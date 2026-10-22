@@ -1,1 +1,67 @@
 
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>SkillSphere — Career Intelligence Studio</title>
+<meta name="description" content="Explore careers, map your skills, and build multiple learning roadmaps with SkillSphere.">
+<meta name="theme-color" content="#07061A">
+<style>
+html,body{margin:0;height:100%;background:#07061a;overflow:hidden}
+#stage{position:fixed;inset:0}
+#stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#07061a;color-scheme:dark}
+#curtain{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:#07061a;opacity:0;pointer-events:none;transition:opacity .25s ease}
+#curtain.on{opacity:1;pointer-events:auto}
+#curtain i{display:block;width:160px;height:3px;border-radius:9px;background:linear-gradient(90deg,#ff6b35,#9d7bff,#7cf2c9);transform:scaleX(0);transform-origin:left}
+#curtain.on i{animation:bar .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes bar{to{transform:scaleX(1)}}
+noscript{position:fixed;inset:0;display:grid;place-items:center;padding:24px;color:#e9e7ff;font:16px system-ui,sans-serif;text-align:center}
+@media(prefers-reduced-motion:reduce){#curtain{transition:none}#curtain.on i{animation:none;transform:scaleX(1)}}
+</style></head><body>
+<div id="stage"></div><div id="curtain" aria-hidden="true"><i></i></div>
+<noscript>SkillSphere needs JavaScript to run.</noscript>
+<script>
+"use strict";
+// Host page: runs exactly one UI at a time. High-End Mode (highend.html) is the default;
+// Fast Mode (fast.html) is the lightweight UI. Switching removes the old document entirely
+// (its 3D scene, animation loops and listeners die with it) before the other one loads.
+(function(){
+ var FILES={high:"highend.html",fast:"fast.html"},stage=document.getElementById("stage"),curtain=document.getElementById("curtain");
+ var frame=null,mode=null,busy=false,readyCb=null;
+ var safeHash=function(h){return typeof h==="string"&&/^#\/[\w\-\/]*$/.test(h)?h:""};
+ function stored(){try{return localStorage.getItem("ss_mode")==="fast"?"fast":"high"}catch(e){return"high"}}
+ function store(m){try{localStorage.setItem("ss_mode",m)}catch(e){}}
+ function mount(m,hash){
+  return new Promise(function(res){
+   var f=document.createElement("iframe");f.title="SkillSphere";f.src=FILES[m]+safeHash(hash);
+   f.addEventListener("load",function(){res(f)},{once:true});
+   stage.appendChild(f);frame=f;mode=m;
+  });
+ }
+ function unmount(){if(!frame)return;var f=frame;frame=null;f.remove()}
+ function request(to,hash){
+  if(busy||to===mode||!frame)return;busy=true;
+  var t,done=false;
+  function go(){
+   if(done)return;done=true;clearTimeout(t);readyCb=null;
+   curtain.classList.add("on");
+   setTimeout(function(){
+    unmount();store(to);
+    var lift=setTimeout(function(){curtain.classList.remove("on");busy=false},8000);
+    mount(to,hash).then(function(nf){clearTimeout(lift);try{nf.contentWindow.focus()}catch(e){}requestAnimationFrame(function(){curtain.classList.remove("on");busy=false})});
+   },matchMedia("(prefers-reduced-motion: reduce)").matches?0:260);
+  }
+  readyCb=go;t=setTimeout(go,2500);
+  try{frame.contentWindow.postMessage({type:"ss-prepare"},"*")}catch(e){go()}
+ }
+ addEventListener("message",function(e){
+  if(!frame||e.source!==frame.contentWindow)return;var d=e.data;if(!d||typeof d!=="object")return;
+  if(d.type==="ss-switch"&&(d.to==="fast"||d.to==="high"))request(d.to,d.hash);
+  else if(d.type==="ss-ready"&&readyCb)readyCb();
+  else if(d.type==="ss-state"){
+   var h=safeHash(d.hash);try{history.replaceState(null,"",location.pathname+location.search+h)}catch(x){}
+   if(typeof d.title==="string"&&d.title)document.title=d.title.slice(0,120);
+  }
+ });
+ // address bar edited by hand -> forward the route to the active UI
+ addEventListener("hashchange",function(){var h=safeHash(location.hash);if(frame&&h){try{frame.contentWindow.postMessage({type:"ss-goto",hash:h},"*")}catch(e){}}});
+ mount(stored(),location.hash);
+})();
+</script>
+</body></html>
