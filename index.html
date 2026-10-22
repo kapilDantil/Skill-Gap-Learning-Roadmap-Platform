@@ -264,12 +264,25 @@ body.gl-on .float-orb,body.gl-on .wire-cube,body.gl-on .orbit,body.gl-on .scroll
 .site-footer a,.site-footer nav button{color:#d9d6ff;background:none;border:0;padding:10px 0;min-height:44px;font-weight:600;text-decoration:underline;text-underline-offset:3px;border-radius:0;box-shadow:none}
 .site-footer a:hover,.site-footer nav button:hover{color:var(--mint);background:none;box-shadow:none;transform:none}
 .legal{max-width:760px;margin:0 auto;padding:10px 0 40px}.legal h1{font-size:2.2rem}.legal h2{font-size:1.25rem;margin:2rem 0 .5rem}.legal p,.legal li{color:#dcd9f5;line-height:1.7}
-.cb{position:fixed;left:12px;right:12px;bottom:12px;z-index:200;max-width:640px;margin:0 auto;padding:16px;border:1px solid rgba(185,205,255,.3);border-radius:14px;background:#14123a;box-shadow:0 12px 40px #000a}
-.cb p{margin:0 0 12px;font-size:.9rem}.cb .row{gap:8px}.cb button{flex:1 1 150px}
+.cb{position:fixed;left:16px;bottom:16px;z-index:200;width:min(360px,calc(100vw - 32px));padding:14px 16px;border:1px solid rgba(205,215,255,.22);border-radius:18px;background:linear-gradient(135deg,rgba(42,38,88,.82),rgba(14,12,43,.9));backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 18px 48px -16px #000;animation:cbIn .45s var(--ease) both}
+.cb-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;font:700 .85rem var(--display);letter-spacing:-.01em}.cb-head i{font-style:normal;color:var(--mint)}
+.cb p{margin:0 0 12px;font-size:.78rem;line-height:1.5;color:var(--muted)}.cb p a{color:var(--mint);text-decoration:underline;text-underline-offset:2px}
+.cb .row{gap:8px;flex-wrap:nowrap}.cb button{flex:1 1 0;min-height:38px;padding:7px 12px;font-size:.8rem}
+@keyframes cbIn{from{opacity:0;transform:translateY(14px) scale(.97)}}
+@media(max-width:560px){.cb{left:10px;right:10px;width:auto;bottom:66px;padding:12px 14px}}
+@media(prefers-reduced-motion:reduce){.cb{animation:none}}
+.welcome-side{display:grid;gap:16px;width:100%;min-width:0}
+.sync-card{padding:clamp(18px,2.4vw,26px)}.sync-card.mt{margin-top:16px}
+.sync-card h3{margin:1rem 0 .4rem}.sync-card .mu{margin:0 0 1rem}
+.sync-ico{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;color:var(--sky);background:rgba(127,180,255,.1);border:1px solid rgba(127,180,255,.22)}
+.sync-form{display:grid;gap:10px}.sync-form input{width:100%}
+.sync-form .pri,.sync-card>.dan{width:100%;justify-content:space-between;min-height:48px;padding-inline:19px}
+.sync-mail{color:var(--mint);overflow-wrap:anywhere}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style></head><body class="app-shell">
 <div class="ambient aurora" aria-hidden="true"><i></i><i></i><i></i><div class="float-orb orb-one"><span></span></div><div class="float-orb orb-two"><span></span></div><div class="float-orb orb-three"><span></span></div><div class="wire-cube cube-one"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="wire-cube cube-two"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="orbit orbit-one"><i></i></div><div class="orbit orbit-two"><i></i></div><div class="spark-field"></div><div class="scroll-sculpture" aria-hidden="true"><div class="sculpture-ring r1"></div><div class="sculpture-ring r2"></div><div class="sculpture-ring r3"></div><div class="sculpture-core"></div><i class="sculpture-node n1"></i><i class="sculpture-node n2"></i><i class="sculpture-node n3"></i><i class="sculpture-shard s1"></i><i class="sculpture-shard s2"></i></div><div class="saturn-scene" aria-hidden="true"><div class="saturn-aura"></div><div class="saturn-planet"><div class="saturn-surface"></div><div class="saturn-glint"></div></div><div class="saturn-ring saturn-ring-back"></div><div class="saturn-ring saturn-ring-mid"></div><div class="saturn-ring saturn-ring-front"></div><div class="saturn-orbit-dot dot-a"></div><div class="saturn-orbit-dot dot-b"></div></div></div>
 <div class="noise" aria-hidden="true"></div><div class="cursor-glow" aria-hidden="true"></div><div class="scroll-progress" aria-hidden="true"><i></i></div>
-<header class="app-header"><a class="logo" href="#/overview" aria-label="SkillSphere home"><span class="logo-mark">◈</span><span>Skill<span class="logo-accent">Sphere</span></span></a><nav id="nav" aria-label="Main"></nav><div class="header-meta"><span class="local-pill" id="net"><i></i> Local app</span><span class="header-orb" aria-hidden="true">✦</span></div></header>
+<header class="app-header"><a class="logo" href="#/overview" aria-label="SkillSphere home"><span class="logo-mark">◈</span><span>Skill<span class="logo-accent">Sphere</span></span></a><nav id="nav" aria-label="Main"></nav></header>
 <main id="m" tabindex="-1"></main><footer class="site-footer"><div><b>SkillSphere</b><p class="mu">Career roadmaps and skill gap planning. Your data stays on your device.</p></div><nav aria-label="Legal"><a href="#/privacy">Privacy policy</a><a href="#/terms">Terms and conditions</a><button type="button" data-consent-open>Cookie settings</button></nav><p class="mu">&copy; <span data-year>2026</span> SkillSphere. All rights reserved.</p></footer><div id="toast" role="status" aria-live="polite"></div>
 <dialog id="dlg"><form method="dialog"><p id="dq"></p><div class="row"><button value="n">Cancel</button><button value="y" class="pri">Confirm</button></div></form></dialog>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
@@ -344,30 +357,40 @@ async function cloudPull(){
   }
   render();
 }
-async function cloudLogin(){
-  if(!SB) return toast("Add your Supabase Project URL and publishable/anon key in the cloud settings near the top of this script first.",1);
-  const email = prompt("Email");
-  const pw = prompt("Password (at least 6 characters)");
-  if(!email || !pw) return;
-  let r = await SB.auth.signInWithPassword({email, password:pw});
-  if(r.error) r = await SB.auth.signUp({email, password:pw});
-  if(r.error || !r.data.user) return toast(r.error ? r.error.message : "Login failed",1);
-  if(!r.data.session) return toast("Check your email to confirm the account, then sign in again.",1);
-  cloudUser = r.data.user;
-  await cloudPull();
-  toast("Cloud sync is on");
+async function syncSubmit(f){
+  if(!SB) return toast("Cloud sync isn't available right now. Check your connection and reload the page.",1);
+  const email=$("#se").value.trim(), pw=$("#sp").value;
+  if(!/^\S+@\S+\.\S+$/.test(email)) return toast("Enter a valid email address.",1);
+  if(pw.length<6) return toast("Password must be at least 6 characters.",1);
+  const btn=f.querySelector("button[type=submit]"); btn.disabled=true;
+  try{
+    let r=await SB.auth.signInWithPassword({email,password:pw});
+    if(r.error){
+      const u=await SB.auth.signUp({email,password:pw});
+      if(u.error) return toast(u.error.message,1);
+      if(u.data.user && u.data.user.identities && !u.data.user.identities.length) return toast("Incorrect password for this email.",1);
+      if(!u.data.session) return toast("Check your email to confirm your account, then sign in again.",1);
+      r=u;
+    }
+    cloudUser=r.data.user;
+    await cloudPull();
+    toast("Cloud sync is on");
+  }catch(err){toast("Could not reach the sync service. Try again.",1)}
+  finally{btn.disabled=false}
 }
-if(SB){
-  SB.auth.getSession().then(({data})=>{
-    if(data.session){cloudUser=data.session.user;cloudPull()}
-  });
+async function syncOut(){
+  if(SB) await SB.auth.signOut();
+  cloudUser=null;
+  toast("Signed out of cloud sync. Your data stays on this device.");
+  render();
 }
-const cb = document.createElement("button");
-cb.textContent = "☁ Cloud Sync";
-cb.setAttribute("aria-label","Sign in to enable cloud sync");
-cb.onclick = cloudLogin;
-cb.style.cssText = "position:fixed;right:12px;bottom:12px;z-index:120";
-document.body.append(cb);
+document.addEventListener("submit",e=>{if(e.target.id==="syncform"){e.preventDefault();syncSubmit(e.target)}});
+function syncCard(c){
+  const on=!!cloudUser;
+  return `<div class="card sync-card ${c||""}"><div class="panel-topline"><span class="eyebrow"><i></i> CLOUD SYNC</span><span class="sync-ico" aria-hidden="true">☁</span></div>`+(on
+   ?`<h3>You're synced</h3><p class="mu">Signed in as <b class="sync-mail">${E(cloudUser.email||"your account")}</b>. Your profiles are backed up and available on your other devices.</p><button type="button" class="dan" data-a="syncout">Sign out <span aria-hidden="true">↗</span></button>`
+   :`<h3>Sign in to sync devices</h3><p class="mu">Optional. Use your email to back up your profiles and pick up where you left off on any device.</p><form id="syncform" class="sync-form" novalidate><label class="sr" for="se">Email</label><input id="se" type="email" autocomplete="email" placeholder="you@example.com"><label class="sr" for="sp">Password</label><input id="sp" type="password" autocomplete="current-password" placeholder="Password (6+ characters)"><button class="pri" type="submit">Continue with email <span aria-hidden="true">↗</span></button></form><p class="fine-print">New here? We'll create your account automatically.</p>`)+`</div>`;
+}
 function toast(t,e){const x=$("#toast");x.textContent=t;x.className=e?"e":"";x.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>x.style.display="none",3500)}
 function ask(q){return new Promise(r=>{$("#dq").textContent=q;const d=$("#dlg");d.onclose=()=>r(d.returnValue==="y");d.showModal()})}
 function log(m){P().log.unshift({t:now(),m});P().log=P().log.slice(0,100)}
@@ -384,10 +407,10 @@ function overall(){const r=Object.values(P().roadmaps);return r.length?Math.roun
 const bar=(p,l)=>`<div class="bar" role="progressbar" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100" aria-label="${E(l)}"><i style="width:${p}%"></i></div>`;
 const bdg=t=>`<span class="badge b-${E(t.split(" ")[0])}">${E(t)}</span>`;
 // ---------- VIEWS ----------
-function welcome(){const ps=Object.values(db.profiles);return `<div class="welcome-layout"><div class="welcome-copy"><span class="eyebrow"><i></i> YOUR PERSONAL CAREER INTELLIGENCE</span><h1>Explore your potential.<br><span>Build what comes next.</span></h1><p class="welcome-lede">A clearer way to discover careers, close skill gaps, and build your future—one deliberate step at a time.</p><div class="welcome-points"><span>✦ Explainable career matches</span><span>✦ Multiple roadmaps</span><span>✦ Local-first by design</span></div><div class="welcome-note"><span class="note-icon">⌘</span><span><b>Your journey stays yours.</b><small>Choose your direction. Start only when you're ready.</small></span></div></div><div class="card welcome-panel"><div class="panel-topline"><span class="eyebrow">GET STARTED</span><span class="mini-spark">✳</span></div><h2>Create your space</h2><p class="mu">Set up a local profile to keep your skills and roadmaps together on this device.</p>
+function welcome(){const ps=Object.values(db.profiles);return `<div class="welcome-layout"><div class="welcome-copy"><span class="eyebrow"><i></i> YOUR PERSONAL CAREER INTELLIGENCE</span><h1>Explore your potential.<br><span>Build what comes next.</span></h1><p class="welcome-lede">A clearer way to discover careers, close skill gaps, and build your future—one deliberate step at a time.</p><div class="welcome-points"><span>✦ Explainable career matches</span><span>✦ Multiple roadmaps</span><span>✦ Local-first by design</span></div><div class="welcome-note"><span class="note-icon">⌘</span><span><b>Your journey stays yours.</b><small>Choose your direction. Start only when you're ready.</small></span></div></div><div class="welcome-side"><div class="card welcome-panel"><div class="panel-topline"><span class="eyebrow">GET STARTED</span></div><h2>Create your space</h2><p class="mu">Set up a local profile to keep your skills and roadmaps together on this device.</p>
 ${ps.length?`<div class="profile-manager-head"><h3 class="subhead">Profiles in this sync account</h3><button class="dan" data-a="delallprofiles">Remove all</button></div><div class="profile-manager">${ps.map(p=>`<div class="profile-entry"><span class="profile-name">${E(p.name)}</span><div class="profile-actions"><button data-a="open" data-id="${E(p.id)}">Open</button><button class="dan" data-a="delprofile" data-id="${E(p.id)}" aria-label="Delete profile ${E(p.name)}">Delete</button></div></div>`).join("")}</div><p class="profile-delete-note">Deleting a profile removes its saved skills, roadmaps, and progress. When Cloud Sync is signed in, the change is synced to that account.</p>`:""}
 <h3 class="subhead">Your display name</h3><div class="row name-row"><label class="field-label" for="pn">Name</label><input id="pn" maxlength="30" autocomplete="off" placeholder="What should we call you?"></div>
-<p class="mu interest-label">Choose interests <span>(optional)</span></p><div class="row interest-options" id="pi">${CATS.map(c=>`<label><input type="checkbox" value="${c}"> ${c}</label>`).join(" ")}</div><p class="create-action"><button class="pri" data-a="create">Create My Space <span aria-hidden="true">↗</span></button></p><p class="fine-print">Local demo profile · No password required</p></div></div>`}
+<p class="mu interest-label">Choose interests <span>(optional)</span></p><div class="row interest-options" id="pi">${CATS.map(c=>`<label><input type="checkbox" value="${c}"> ${c}</label>`).join(" ")}</div><p class="create-action"><button class="pri" data-a="create">Create My Space <span aria-hidden="true">↗</span></button></p><p class="fine-print">Local demo profile · No password required</p></div>${syncCard()}</div></div>`}
 function home(){const p=P(),rs=Object.values(p.roadmaps),n=s=>rs.filter(r=>r.status===s).length,mc=rs.reduce((a,r)=>a+rstat(r).d,0),mastered=Object.values(p.skills).filter(s=>s.s==="Mastered").length;
 const cards=[["Careers",CAT.length],["Started roadmaps",rs.length],["Active",n("Active")],["Paused",n("Paused")],["Milestones done",mc],["Skills mastered",mastered],["Overall progress",overall()+"%"]];
 const top=CAT.map(c=>({c,s:score(c)})).filter(x=>x.s.v>0).sort((a,b)=>b.s.v-a.s.v).slice(0,3);
@@ -416,16 +439,16 @@ function progress(){const p=P(),rs=Object.values(p.roadmaps),tot=rs.reduce((a,r)
 return `<h1>Progress Centre</h1><div class="card"><div class="stat">${overall()}%</div><div class="mu">Overall = simple average of completion % across all started roadmaps (including paused). ${dn} done, ${tot-dn} remaining.</div></div>
 ${rs.length?rs.map(roadCard).join(""):`<div class="card">Nothing to show yet. Start a roadmap to see progress.</div>`}<h2>Activity</h2><div class="card">${p.log.length?`<ul>${p.log.map(l=>`<li>${new Date(l.t).toLocaleString()} — ${E(l.m)}</li>`).join("")}</ul>`:"No activity yet."}</div>`}
 function profile(){const p=P();return `<h1>Profile &amp; Settings</h1><div class="card"><p><b>${E(p.name)}</b></p><label>Weekly learning hours (optional)<br><input id="wk" type="number" min="0" max="80" value="${p.weekly||""}"></label> <button data-a="wk">Save</button>
-<p class="row"><button data-a="exp">Export Data (JSON)</button><button data-a="out">Log Out</button></p><p><button class="dan" data-a="reset">Reset This Profile</button></p><p class="mu">Data stays in this browser. No passwords, accounts or network requests are used. Recommendations are rule-based; no machine-learning model is included.</p></div>`}
+<p class="row"><button data-a="exp">Export Data (JSON)</button><button data-a="out">Log Out</button></p><p><button class="dan" data-a="reset">Reset This Profile</button></p><p class="mu">Data stays in this browser unless you turn on cloud sync below. Recommendations are rule-based; no machine-learning model is included.</p></div>${syncCard("mt")}`}
 // ---------- ROUTER ----------
 const NAV=[["overview","Overview"],["explore","Explore Careers"],["roadmaps","My Roadmaps"],["skills","My Skills"],["progress","Progress Centre"],["profile","Profile"]];
 const LEGAL={privacy:{t:"Privacy Policy",h:"<div class=\"legal\"><h1>Privacy policy<\/h1><p class=\"mu\">Last updated: October 21, 2026<\/p>\n<h2>What we store on your device<\/h2><p>When you create a profile, SkillSphere saves your display name, chosen interests, skills, roadmaps, progress and an activity log in your browser's local storage. It also saves your cookie choice. This data never leaves your device unless you turn on cloud sync.<\/p>\n<h2>Optional cloud sync<\/h2><p>If you allow optional storage and sign in, your email address, a password (handled by our authentication provider, Supabase) and a copy of your profile data are stored on Supabase servers so you can use them on other devices. The Supabase code library is loaded from the jsDelivr network only after you allow optional storage. Your sign-in session is kept in local storage.<\/p>\n<h2>What we do not do<\/h2><ul><li>No advertising, tracking pixels or analytics.<\/li><li>We do not sell or share your data.<\/li><li>We do not use your data to train AI models.<\/li><\/ul>\n<h2>Cookies and local storage<\/h2><p>Essential storage keeps the app working: your profiles and your consent choice. Optional storage is used only for cloud sync sign-in. Use \"Cookie settings\" in the footer to change your choice at any time. Choosing \"Essential only\" signs you out of cloud sync.<\/p>\n<h2>Your choices<\/h2><ul><li>Export your data from the Profile page as a JSON file.<\/li><li>Delete a profile, or reset it, from the app. This removes it from this device and from cloud sync if you are signed in.<\/li><li>Clear your browser's site data to remove everything stored locally.<\/li><li>To delete your cloud account, contact us using the details below.<\/li><\/ul>\n<h2>Children<\/h2><p>SkillSphere is not directed at children under 13, and we do not knowingly collect their data.<\/p>\n<h2>Changes<\/h2><p>We will update this page and its date when our practices change.<\/p><p><a class=\"btn\" href=\"#/overview\">Back to SkillSphere<\/a><\/p><\/div>"},terms:{t:"Terms and Conditions",h:"<div class=\"legal\"><h1>Terms and conditions<\/h1><p class=\"mu\">Last updated: October 21, 2026<\/p>\n<h2>Using SkillSphere<\/h2><p>SkillSphere is a planning tool for exploring tech careers, tracking skills and following learning roadmaps. By using it you agree to these terms.<\/p>\n<h2>Guidance, not guarantees<\/h2><p>Skill levels are self-reported. Overlap scores are a simple calculation from the skills and interests you enter. They do not measure ability or hiring chances. Hour estimates are rough guides. Completing a roadmap does not guarantee a job or a salary.<\/p>\n<h2>Your data<\/h2><p>You are responsible for the information you enter. Data is stored in your browser, so clearing site data deletes it unless you use cloud sync or export a copy. See our <a href=\"#/privacy\">privacy policy<\/a> for details.<\/p>\n<h2>Acceptable use<\/h2><p>Do not attempt to disrupt the service, access other people's data, or use automated tools to overload it.<\/p>\n<h2>Accounts<\/h2><p>If you create a cloud sync account, keep your password private. You may stop using it and ask us to delete it at any time.<\/p>\n<h2>Availability and liability<\/h2><p>The service is provided as is and may change or be unavailable. To the extent the law allows, we are not liable for losses caused by using it, including lost local data.<\/p>\n<h2>Changes<\/h2><p>We may update these terms. Continued use after an update means you accept the new terms.<\/p><p><a class=\"btn\" href=\"#/overview\">Back to SkillSphere<\/a><\/p><\/div>"}};
-function render(){const [,r,a]=(location.hash||"#/overview").split("/"),m=$("#m");$("#net").textContent=navigator.onLine?"● Local app (online)":"● Offline mode";
+function render(){const [,r,a]=(location.hash||"#/overview").split("/"),m=$("#m");
 if(Object.prototype.hasOwnProperty.call(LEGAL,r)){$("#nav").innerHTML=(db.cur&&P())?NAV.map(n=>`<a href="#/${n[0]}">${n[1]}</a>`).join(""):"";document.title=LEGAL[r].t+" | SkillSphere";m.innerHTML=LEGAL[r].h;return}
 if(!db.cur||!P()){db.cur=null;$("#nav").innerHTML="";m.innerHTML=welcome();return}
 $("#nav").innerHTML=NAV.map(n=>`<a href="#/${n[0]}" ${(r||"overview")===n[0]||(r==="career"&&n[0]==="explore")||(r==="roadmap"&&n[0]==="roadmaps")?'aria-current="page"':""}>${n[1]}</a>`).join("");
 const V={overview:home,explore,career:()=>careerView(a),roadmaps,roadmap:()=>roadmapView(a),skills,progress,profile};m.innerHTML=(V[r||"overview"]||home)();if(r==="explore")results()}
-addEventListener("hashchange",()=>{render();scrollTo(0,0)});addEventListener("online",render);addEventListener("offline",render);
+addEventListener("hashchange",()=>{render();scrollTo(0,0)});
 document.addEventListener("input",e=>{const t=e.target;if(t.id==="fq"||t.id==="fc"||t.id==="fl"||t.id==="fh"){F.q=$("#fq").value;F.c=$("#fc").value;F.l=$("#fl").value;F.h=$("#fh").checked;results()}});
 document.addEventListener("change",e=>{const t=e.target;if(t.dataset.a==="sst"){const u=P().skills[t.dataset.id];if(u){u.s=t.value;log("Skill status: "+t.dataset.id+" → "+t.value);save();render()}}});
 document.addEventListener("click",async e=>{const b=e.target.closest("[data-a]");if(!b||b.tagName==="SELECT")return;const a=b.dataset.a,id=b.dataset.id,p=db.cur&&P();
@@ -434,6 +457,7 @@ db.profiles[pid]={id:pid,name:n,interests:i,skills:{},roadmaps:{},log:[],weekly:
 else if(a==="open"){db.cur=id;save();location.hash="#/overview";render()}
 else if(a==="delprofile"){const target=db.profiles[id];if(!target)return toast("That profile was not found.",1);if(!await ask(`Permanently delete the profile "${target.name}" and all its skills, roadmaps, and progress? This cannot be undone.`))return;delete db.profiles[id];if(db.cur===id)db.cur=null;if(save()){toast("Profile deleted"+(cloudUser?" and queued for cloud sync.":" from this browser."));render()}}
 else if(a==="delallprofiles"){const count=Object.keys(db.profiles).length;if(!count)return toast("There are no profiles to remove.");if(!await ask("Permanently delete ALL "+count+" profiles and their saved skills, roadmaps, and progress?"+(cloudUser?" This will sync the deletion to this cloud account.":" This only affects this browser unless Cloud Sync is signed in.")+" This cannot be undone."))return;db.profiles={};db.cur=null;if(save()){toast("All profiles deleted"+(cloudUser?"; cloud sync queued.":" from this browser."));render()}}
+else if(a==="syncout"){await syncOut()}
 else if(a==="clr"){Object.assign(F,{q:"",c:"",l:"",h:false});render()}
 else if(a==="start"){const c=career(id);if(!c)return toast("Career not found.",1);if(p.roadmaps[id])return location.hash="#/roadmap/"+id;if(!await ask("Start the "+c.t+" roadmap? It begins with no progress."))return;
 p.roadmaps[id]={cid:id,status:"Active",created:now(),upd:now(),done:{}};log("Started roadmap: "+c.t);if(save()){toast("Roadmap started.");location.hash="#/roadmap/"+id}}
@@ -628,7 +652,7 @@ render();
 </script><script>
 // Cookie consent + footer helpers (from site.js)
 function ssConsent(v){try{localStorage.setItem("ss_consent",v)}catch(e){}const b=document.querySelector(".cb");if(b)b.remove();dispatchEvent(new Event("ss:consent"))}
-function ssBanner(){if(document.querySelector(".cb"))return;const b=document.createElement("div");b.className="cb";b.setAttribute("role","region");b.setAttribute("aria-label","Cookie consent");b.innerHTML='<p>SkillSphere stores your profile in this browser so the app works. Optional storage is used only for cloud sync sign-in. See the <a href="#/privacy">privacy policy</a>.</p><div class="row"><button type="button" class="pri" id="cb-a">Allow optional storage</button><button type="button" id="cb-e">Essential only</button></div>';document.body.append(b);b.querySelector("#cb-a").onclick=()=>ssConsent("all");b.querySelector("#cb-e").onclick=()=>ssConsent("essential")}
+function ssBanner(){if(document.querySelector(".cb"))return;const b=document.createElement("div");b.className="cb";b.setAttribute("role","region");b.setAttribute("aria-label","Cookie consent");b.innerHTML='<div class="cb-head"><i aria-hidden="true">◈</i> Cookies &amp; storage</div><p>We keep your profile on this device. Optional storage is used only for cloud sync sign-in. <a href="#/privacy">Privacy policy</a></p><div class="row"><button type="button" id="cb-e">Reject</button><button type="button" class="pri" id="cb-a">Accept</button></div>';document.body.append(b);b.querySelector("#cb-a").onclick=()=>ssConsent("all");b.querySelector("#cb-e").onclick=()=>ssConsent("essential")}
 document.addEventListener("DOMContentLoaded",()=>{
 document.querySelectorAll("[data-year]").forEach(e=>e.textContent=new Date().getFullYear());
 document.querySelectorAll("[data-consent-open]").forEach(b=>b.onclick=ssBanner);
